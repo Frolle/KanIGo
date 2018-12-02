@@ -1,4 +1,4 @@
-package se.layer10.kanigo;
+package se.simonfransson.kanigo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

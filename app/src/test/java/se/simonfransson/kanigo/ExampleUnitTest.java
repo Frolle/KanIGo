@@ -1,4 +1,4 @@
-package se.layer10.kanigo;
+package se.simonfransson.kanigo;
 
 import org.junit.Test;
 
