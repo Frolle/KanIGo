@@ -1,18 +1,16 @@
 package se.simonfransson.kanigo;
 
+import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
         checkInButton.setEnabled(false);
         checkInButton.setClickable(false);
         rootLayout.setBackgroundColor(getResources().getColor(R.color.bestRed, null));
-        descriptText.setText("NAJ! Du får vänta:");
+        descriptText.setText(R.string.time_to_wait);
 
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now(); // sparas ned till databas
         final LocalDateTime whenToStop = now.plusSeconds(10);
         Duration between = Duration.between(now, whenToStop);
         long millis = between.toMillis();
@@ -42,10 +40,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTick(long l) {
                 Duration timeLeft = Duration.between(LocalDateTime.now(), whenToStop);
-                timeUntil.setText("Days: " + timeLeft.toDays() + ", " +
-                        "Hours: " + timeLeft.toHours() + ", " +
-                        "Minutes: " + timeLeft.toMinutes() + ", " +
-                        "Seconds: " + timeLeft.getSeconds());
+                String dateText = formatDateString(timeLeft);
+                timeUntil.setText(dateText);
             }
 
             @Override
@@ -54,8 +50,20 @@ public class MainActivity extends AppCompatActivity {
                 checkInButton.setEnabled(true);
                 checkInButton.setClickable(true);
                 timeUntil.setText(null);
-                descriptText.setText("JA FÖR FAN! GÅ NU!");
+                descriptText.setText(R.string.time_to_go);
             }
         }.start();
+    }
+
+    private String formatDateString(Duration timeLeft) {
+        return String.format(Locale.getDefault(),
+                "%d " + getResources().getString(R.string.days_left) +
+                        " %d " + getResources().getString(R.string.hours_left) +
+                        " %d " + getResources().getString(R.string.minutes_left) +
+                        " %d " + getResources().getString(R.string.seconds_left),
+                timeLeft.toDays(),
+                timeLeft.toHours(),
+                timeLeft.toMinutes(),
+                timeLeft.getSeconds());
     }
 }

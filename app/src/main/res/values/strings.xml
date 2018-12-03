@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">KanIGo</string>
+    <string name="time_to_go">JA FÖR FAN! GÅ NU!</string>
+    <string name="time_to_wait">NAJ! Du får vänta:</string>
+    <string name="days_left">dagar</string>
+    <string name="hours_left">timmar</string>
+    <string name="minutes_left">minuter</string>
+    <string name="seconds_left">sekunder</string>
 </resources>

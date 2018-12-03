@@ -43,8 +43,8 @@
     <Button
         android:id="@+id/checkInButton"
         style="@android:style/Widget.Holo.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
         android:layout_marginStart="148dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="148dp"
@@ -58,11 +58,9 @@
 
     <TextView
         android:id="@+id/timeUntilTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="166dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="147dp"
         android:layout_marginBottom="25dp"
         android:gravity="center"
         android:textAlignment="center"
